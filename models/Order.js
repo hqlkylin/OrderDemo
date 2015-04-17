@@ -27,6 +27,6 @@ Order.prototype.save=function(callback){
         money:this.money,
         personName:this.personName,
         email:this.email
-    }
+    };
     db.addorder(model,callback);
 }

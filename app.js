@@ -29,7 +29,7 @@ app.use(session({secret:"kylin",cookie:{maxAge:1200000}}));
 
 
 app.use('/', orders);
-app.use('/users', users);
+app.use('/users/', users);
 
 
 
