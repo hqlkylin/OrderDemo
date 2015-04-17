@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script>
+    window.onload= function () {
+//        var addbtn=document.getElementById("btnAdd");
+//        addbtn.addEventListener("click", function () {
+//          var form= document.getElementById("form1");
+//          form.action="/add";
+//          form.submit();
+//        })
+    }
+  </script>
+</head>
+<body>
+<section>
+  <header id="div_head_title_big">
+    <h1>编辑订单信息</h1>
+  </header>
+
+  <form action="" id="form1" method="post">
+    <ul>
+      <li>
+        <ul>
+          <li id="title_1">
+            <span>*</span><label for="tbxCode">订单编号</label>
+          </li>
+          <li id="content_1">
+            <input type="text" id="tbxCode" name="code" maxlength="8" autofocus required/>
+          </li>
+          <li id="title_2">
+            <span>*</span><label for="tbxDate">订单时期</label>
+          </li>
+          <li id="content_2">
+            <input type="date" id="tbxDate" name="date" maxlength="10"  required/>
+          </li>
+          <li>
+            <span>*</span><label>商品编号</label>
+          </li>
+          <li>
+            <input type="text" id="tbxGoodsCode" name="goodsCode" maxlength="12"  required/>
+          </li>
+          <li>
+            <span>*</span><label>商标</label>
+          </li>
+          <li>
+            <input type="text" id="tbxBrandName" name="brandName" maxlength="12"  required/>
+          </li>
+          <li>
+            <span>*</span><label>数量</label>
+          </li>
+          <li>
+            <input type="number" id="tbxNum" name="num" maxlength="12"  required/>
+          </li>
+          <li>
+            <span>*</span><label>单价</label>
+          </li>
+          <li>
+            <input type="text" id="tbxPrice" name="price" maxlength="12"  required/>
+          </li>
+          <li>
+            <span>*</span><label>金额</label>
+          </li>
+          <li>
+            <input type="text"  name="money" maxlength="12" />
+          </li>
+          <li>
+            <span>*</span><label>负责人</label>
+          </li>
+          <li>
+            <input type="text"  name="personName" maxlength="12" />
+          </li>
+          <li>
+            <span>*</span><label>负责人email</label>
+          </li>
+          <li>
+            <input type="text"  name="email" maxlength="12" />
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div id="buttonDiv">
+      <span id="msg"></span>
+      <%if(code==""|| errMsg){%>
+      <input type="submit" id="btnAdd" value="追加"   formaction="/edit" />
+      <%} else{%>
+      <input type="submit" name="btnUpdate" id="btnUpdate" value="修改" onclick="btnUpdate_onclick();"/>
+      <%}%>
+      <input type="button" name="btnClear" id="btnClear" value="清除" onclick="btnClear_onclick();"/>
+
+      <input type="button" name="btnReturn" id="btnReturn" value="返回" onclick="btnClear_onclick();"/>
+    </div>
+
+  </form>
+</section>
+</body>
+</html>
