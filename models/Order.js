@@ -1,7 +1,21 @@
 /**
  * Created by Administrator on 2015/4/17.
  */
-var db=require("./db");
+var mongoose=require("./db");
+
+var Schema=mongoose.Schema;
+var orderSchema=new Schema({
+    code:String,
+    date:Date,
+    goodsCode:String,
+    brandName:String,
+    num:Number,
+    price:Number,
+    personName:String,
+    email:String
+});
+var Orders=mongoose.model('orders',orderSchema);
+
 function Order(order){
     this.code=order.code;
     this.date=order.date;
@@ -28,5 +42,23 @@ Order.prototype.save=function(callback){
         personName:this.personName,
         email:this.email
     };
-    db.addorder(model,callback);
+    Orders.find({code:model.code}, function (err,orders) {
+        if(err) throw (err)
+        else{
+            if(orders.length>0){
+                exports.errMsg='订单编号已被占用';
+                callback();
+            }else{
+                Orders.create(model,function(err){
+                    if(err) throw err
+                    else{
+
+                    }     exports.errMsg="";
+                    callback();
+                })
+            }
+        }
+    })
 }
+
+

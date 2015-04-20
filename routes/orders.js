@@ -10,6 +10,11 @@ router.get('/', function(req, res, next) {
     req.session.destroy();
     res.render('order_seach',{order:null,rows:new Array()});
 });
+router.post('/search', function(req, res, next) {
+
+
+    res.render('order_seach',{order:null,rows:new Array()});
+});
 router.get('/new/', function(req, res, next) {
     res.render('order_edit',{code:"",errMsg:null,successMsg:null});
 });
