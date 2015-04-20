@@ -2,6 +2,7 @@
  * Created by Administrator on 2015/4/17.
  */
 var mongoose=require('mongoose');
+mongoose.connect('mongodb://kylin:123123@localhost:27017/myDatabase');
 
 Schema=mongoose.Schema;
 var orderSchema=new Schema({
@@ -16,19 +17,20 @@ var orderSchema=new Schema({
 });
 var Orders=mongoose.model('orders',orderSchema);
 
-exports.connect= function (callback) {
-    mongoose.connect('mongodb://kylin:123123@localhost:27017/myDatabase',function(err){
-        if(err) throw (err);
-        else callback();
-    });
-}
+
+//exports.connect= function (callback) {
+//    mongoose.connect('mongodb://kylin:123123@localhost:27017/myDatabase',function(err){
+//        if(err) throw (err);
+//        else callback();
+//    });
+//}
 exports.addorder=function(order,callback){
 
     Orders.find({code:order.code}, function (err,orders) {
         if(err) throw (err)
         else{
             if(orders.length>0){
-                exports.errMsg='该订单编号已被占用';
+                exports.errMsg='璁㈠崟缂栧彿宸茶鍗犵敤';
                 callback();
             }else{
                 Orders.create(order,function(err){

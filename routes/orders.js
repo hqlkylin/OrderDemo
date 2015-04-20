@@ -4,6 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var Order=require("../models/Order")
+var db=require("../models/db");
 /* GET home page. */
 router.get('/', function(req, res, next) {
     req.session.destroy();
@@ -26,14 +27,25 @@ router.post('/edit',function(req,res,next){
         email:req.body.email
     });
     model.save(function () {
-        db.disconnect();
-        //if(db.errMsg)
-        //    res.render('order_edit',{code:req.body.code,order:model,errMsg:db.errMsg,successMsg:null});
-        //else
-        //    res.render('order_edit',{code:req.body.code,order:model,errMsg:null,successMsg:null});
-        res.render('order_edit',{code:"",errMsg:null,successMsg:null});
+      //  db.disconnect();
+        if(db.errMsg)
+            res.render('order_edit',{code:req.body.code,order:model,errMsg:db.errMsg,successMsg:null});
+        else
+            res.render('order_edit',{code:req.body.code,order:model,errMsg:null,successMsg:null});
+      //  res.render('order_edit',{code:"",errMsg:null,successMsg:null});
 
     });
+
+    //db.addorder(model,function(){
+    //
+    //      //  db.disconnect();
+    //        //if(db.errMsg)
+    //        //    res.render('order_edit',{code:req.body.code,order:model,errMsg:db.errMsg,successMsg:null});
+    //        //else
+    //        //    res.render('order_edit',{code:req.body.code,order:model,errMsg:null,successMsg:null});
+    //        res.render('order_edit',{code:"",errMsg:null,successMsg:null});
+    //
+    //})
 
 })
 module.exports = router;
